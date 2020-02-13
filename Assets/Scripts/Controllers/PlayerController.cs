@@ -28,11 +28,11 @@ public class PlayerController : MonoBehaviour
             GetComponent<Rigidbody>().isKinematic = false;
         }
     }
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "Finish")
-        {
-            LevelController.onLevelComplete.Invoke();
-        }
-    }
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    if (collision.gameObject.tag == "Finish")
+    //    {
+    //        LevelController.onLevelComplete.Invoke();
+    //    }
+    //}
 }

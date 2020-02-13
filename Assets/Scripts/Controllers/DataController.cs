@@ -35,7 +35,7 @@ public class DataController : MonoBehaviour
         {
             instance = this;
         }
-        else/* if (instance == this)*/
+        else /*if (instance == this)*/
         {
             Destroy(gameObject);
         }

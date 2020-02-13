@@ -108,6 +108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 370c33f7b332d8440b408ca5c33b1973, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  calibrationQuaternion: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &3382442294754849137
 GameObject:
   m_ObjectHideFlags: 0
@@ -488,6 +489,7 @@ GameObject:
   - component: {fileID: 1131424480340091170}
   - component: {fileID: 8057062289419943470}
   - component: {fileID: 3969705279249426562}
+  - component: {fileID: 1139161412530260877}
   m_Layer: 0
   m_Name: Finish
   m_TagString: Finish
@@ -573,6 +575,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 3, z: 0.5}
   m_Center: {x: 0.0003115177, y: 0, z: -0.00040090084}
+--- !u!114 &1139161412530260877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3609705488072570416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea71c6ff0f0cb664895461e3821471ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3776861365998825030
 GameObject:
   m_ObjectHideFlags: 0

@@ -17,6 +17,7 @@ public class MenuControllerScript : MonoBehaviour
     }
     public void ShowMenu()
     {
+        DataController.instance.IsPaused = true;
         StartCoroutine("OutAnimationRoutine");
     }
     public void HideMenu()
@@ -37,7 +38,7 @@ public class MenuControllerScript : MonoBehaviour
     }
     public void OnNextLevelButton()
     {
-        continueButton.onClick.RemoveListener(OnNextLevelButton);
+        continueButton.onClick.RemoveAllListeners();
         lvlCntrl.LoadNextLevel();
     }
     public IEnumerator OutAnimationRoutine()

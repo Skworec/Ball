@@ -67,6 +67,9 @@ public class LevelController : MonoBehaviour
             {
                 if (childs.name.Contains("Start"))
                 {
+                    Rigidbody rb = player.GetComponent<Rigidbody>();
+                    rb.velocity = Vector3.zero;
+                    rb.angularVelocity = Vector3.zero;
                     player.transform.position = childs.position;
                 }
             }
