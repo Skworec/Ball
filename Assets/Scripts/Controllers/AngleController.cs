@@ -21,10 +21,15 @@ public class AngleController : MonoBehaviour
     }
     void FixedUpdate()
     {
-        Vector3 currentAcceleration = FixAcceleration(LowPassFilterAccelerometer());
-        localRotation.x = currentAcceleration.x;
-        localRotation.z = currentAcceleration.y;
-        transform.rotation = localRotation;
+        if (!DataController.instance.IsPaused)
+        {
+            Vector3 currentAcceleration = FixAcceleration(LowPassFilterAccelerometer());
+            if (Mathf.Abs(currentAcceleration.x) < 0.3)
+                localRotation.x = currentAcceleration.x;
+            if (Mathf.Abs(currentAcceleration.y) < 0.3)
+                localRotation.z = currentAcceleration.y;
+            transform.rotation = localRotation;
+        }
     }
 
     public void CalibrateAccelerometer()

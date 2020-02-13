@@ -8,8 +8,26 @@ public class DataController : MonoBehaviour
     public static DataController instance = null;
     [SerializeField] private bool isSoundEnabled;
     public int reachedLevel;
+    private AudioSource audioSrc;
+    private bool isPaused;
+    public bool IsPaused
+    {
+        get
+        {
+            return isPaused;
+        }
+        set
+        {
+            if (isPaused != value)
+            {
+                isPaused = value;
+                onPauseStateChange.Invoke();
+            }
+        }
+    }
 
     public UnityEvent onVolumeStateChange = new UnityEvent();
+    public UnityEvent onPauseStateChange = new UnityEvent();
     
     private void Awake()
     {
@@ -17,7 +35,7 @@ public class DataController : MonoBehaviour
         {
             instance = this;
         }
-        else if (instance == this)
+        else/* if (instance == this)*/
         {
             Destroy(gameObject);
         }
@@ -25,8 +43,17 @@ public class DataController : MonoBehaviour
 
         InitialiseManager();
     }
+    public void PauseGame()
+    {
+        IsPaused = true;
+    }
+    public void ContinueGame()
+    {
+        IsPaused = false;
+    }
     private void InitialiseManager()
     {
+        audioSrc = gameObject.GetComponent<AudioSource>();
         isSoundEnabled = IsSoundEnabled();
         reachedLevel = ReachedLevel();
     }
@@ -35,13 +62,13 @@ public class DataController : MonoBehaviour
     {
         isSoundEnabled = !isSoundEnabled;
         PlayerPrefs.SetInt("isSoundEnabled", isSoundEnabled ? 1 : 0);
-        if (isSoundEnabled && !gameObject.GetComponent<AudioSource>().isPlaying)
+        if (isSoundEnabled)
         {
-            gameObject.GetComponent<AudioSource>().mute = false;
+            audioSrc.mute = false;
         }
         else
         {
-            gameObject.GetComponent<AudioSource>().mute = true;
+            audioSrc.mute = true;
         }
         onVolumeStateChange.Invoke();
     }
@@ -51,7 +78,7 @@ public class DataController : MonoBehaviour
         {
             if (PlayerPrefs.GetInt("isSoundEnabled") != 1)
             {
-                gameObject.GetComponent<AudioSource>().mute = true;
+                audioSrc.mute = true;
             }
             return PlayerPrefs.GetInt("isSoundEnabled") == 1;
         }
